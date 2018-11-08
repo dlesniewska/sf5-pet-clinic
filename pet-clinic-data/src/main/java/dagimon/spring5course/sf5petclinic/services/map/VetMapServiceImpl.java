@@ -1,11 +1,11 @@
 package dagimon.spring5course.sf5petclinic.services.map;
 
 import dagimon.spring5course.sf5petclinic.model.Vet;
-import dagimon.spring5course.sf5petclinic.services.CrudService;
+import dagimon.spring5course.sf5petclinic.services.VetService;
 
 import java.util.Set;
 
-public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
     public Set<Vet> findAll() {

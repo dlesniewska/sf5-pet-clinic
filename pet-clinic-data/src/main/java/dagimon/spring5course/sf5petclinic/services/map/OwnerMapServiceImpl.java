@@ -1,11 +1,16 @@
 package dagimon.spring5course.sf5petclinic.services.map;
 
 import dagimon.spring5course.sf5petclinic.model.Owner;
-import dagimon.spring5course.sf5petclinic.services.CrudService;
+import dagimon.spring5course.sf5petclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long> implements OwnerService {
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return map.entrySet().stream().filter(entry -> entry.getValue().getLastName().equals(lastName)).findFirst().get().getValue();
+    }
 
     @Override
     public Set<Owner> findAll() {
@@ -31,4 +36,5 @@ public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long> impleme
     public void deleteById(Long id) {
         super.deleteById(id);
     }
+
 }
