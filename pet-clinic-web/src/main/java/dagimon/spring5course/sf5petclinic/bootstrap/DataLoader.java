@@ -4,8 +4,6 @@ import dagimon.spring5course.sf5petclinic.model.Owner;
 import dagimon.spring5course.sf5petclinic.model.Vet;
 import dagimon.spring5course.sf5petclinic.services.OwnerService;
 import dagimon.spring5course.sf5petclinic.services.VetService;
-import dagimon.spring5course.sf5petclinic.services.map.OwnerMapServiceImpl;
-import dagimon.spring5course.sf5petclinic.services.map.VetMapServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +13,9 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerMapServiceImpl();
-        vetService = new VetMapServiceImpl();
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override

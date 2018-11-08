@@ -2,9 +2,11 @@ package dagimon.spring5course.sf5petclinic.services.map;
 
 import dagimon.spring5course.sf5petclinic.model.Owner;
 import dagimon.spring5course.sf5petclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerMapServiceImpl extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override

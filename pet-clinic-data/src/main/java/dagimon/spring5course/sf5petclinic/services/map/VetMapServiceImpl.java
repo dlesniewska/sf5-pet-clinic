@@ -2,9 +2,11 @@ package dagimon.spring5course.sf5petclinic.services.map;
 
 import dagimon.spring5course.sf5petclinic.model.Vet;
 import dagimon.spring5course.sf5petclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
