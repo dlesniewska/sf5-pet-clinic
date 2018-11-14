@@ -1,6 +1,8 @@
 package dagimon.spring5course.sf5petclinic.services.map;
 
+import dagimon.spring5course.sf5petclinic.model.Speciality;
 import dagimon.spring5course.sf5petclinic.model.Vet;
+import dagimon.spring5course.sf5petclinic.services.SpecialityService;
 import dagimon.spring5course.sf5petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,13 @@ import java.util.Set;
 
 @Service
 public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements VetService {
+
+    private final SpecialityService specialityService;
+
+    public VetMapServiceImpl(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
+
 
     @Override
     public Set<Vet> findAll() {
@@ -21,7 +30,19 @@ public class VetMapServiceImpl extends AbstractMapService<Vet, Long> implements 
 
     @Override
     public Vet save(Vet object) {
-        return super.save(object);
+        if (object != null) {
+            if (object.getSpecialities().size() > 0) {
+                object.getSpecialities().forEach(speciality -> {
+                    if (speciality.getId() == 0) {
+                        Speciality savedSpeciality = specialityService.save(speciality);
+                        speciality.setId(savedSpeciality.getId());
+                    }
+                });
+            }
+            return super.save(object);
+        } else {
+            return null;
+        }
     }
 
     @Override
