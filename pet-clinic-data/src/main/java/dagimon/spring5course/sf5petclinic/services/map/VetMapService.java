@@ -4,11 +4,13 @@ import dagimon.spring5course.sf5petclinic.model.Speciality;
 import dagimon.spring5course.sf5petclinic.model.Vet;
 import dagimon.spring5course.sf5petclinic.services.SpecialityService;
 import dagimon.spring5course.sf5petclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialityService specialityService;

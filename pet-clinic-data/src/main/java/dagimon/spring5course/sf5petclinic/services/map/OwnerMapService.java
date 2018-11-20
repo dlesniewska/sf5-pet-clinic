@@ -5,11 +5,13 @@ import dagimon.spring5course.sf5petclinic.model.Pet;
 import dagimon.spring5course.sf5petclinic.services.OwnerService;
 import dagimon.spring5course.sf5petclinic.services.PetService;
 import dagimon.spring5course.sf5petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;
