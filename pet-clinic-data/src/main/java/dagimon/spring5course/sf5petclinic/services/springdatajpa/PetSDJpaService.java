@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class PetSDJpaService extends PetService {
+public class PetSDJpaService implements PetService {
 
     private final PetRepository petRepository;
 
@@ -22,7 +22,7 @@ public class PetSDJpaService extends PetService {
     @Override
     public Set<Pet> findAll() {
         Set<Pet> pets = new HashSet<>();
-        petRepository.findAll().forEach(pets::add ` `);
+        petRepository.findAll().forEach(pets::add);
         return pets;
     }
 
