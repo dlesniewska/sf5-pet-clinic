@@ -1,31 +1,30 @@
 package dagimon.spring5course.sf5petclinic.services.map;
 
-import dagimon.spring5course.sf5petclinic.model.Pet;
-import dagimon.spring5course.sf5petclinic.services.PetService;
+import dagimon.spring5course.sf5petclinic.model.PetType;
+import dagimon.spring5course.sf5petclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class PetMapServiceImpl extends AbstractMapService<Pet, Long> implements PetService {
-
+public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
     @Override
-    public Set<Pet> findAll() {
+    public Set<PetType> findAll() {
         return super.findAll();
     }
 
     @Override
-    public Pet findById(Long id) {
+    public PetType findById(Long id) {
         return super.findById(id);
     }
 
     @Override
-    public Pet save(Pet object) {
+    public PetType save(PetType object) {
         return super.save(object);
     }
 
     @Override
-    public void delete(Pet object) {
+    public void delete(PetType object) {
         super.delete(object);
     }
 
