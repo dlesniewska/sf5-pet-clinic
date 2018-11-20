@@ -1,5 +1,10 @@
 package dagimon.spring5course.sf5petclinic.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "SPECIALITIES")
 public class Speciality extends BaseEntity {
 
     private String description;
