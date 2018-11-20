@@ -1,6 +1,12 @@
 package dagimon.spring5course.sf5petclinic.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PET_TYPES")
 public class PetType extends BaseEntity {
+
     private String name;
 
     public String getName() {

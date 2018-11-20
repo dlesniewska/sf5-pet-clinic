@@ -1,13 +1,22 @@
 package dagimon.spring5course.sf5petclinic.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "OWNERS")
 public class Owner extends Person {
-    private Set<Pet> pets = new HashSet<>();
+
     private String address;
     private String city;
     private String telephone;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private Set<Pet> pets = new HashSet<>();
 
     public Set<Pet> getPets() {
         return pets;
