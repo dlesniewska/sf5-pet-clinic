@@ -8,7 +8,9 @@ import dagimon.spring5course.sf5petclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Profile({"default", "map"})
@@ -25,6 +27,11 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     @Override
     public Owner findByLastName(String lastName) {
         return this.findAll().stream().filter(entry -> entry.getLastName().equalsIgnoreCase(lastName)).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        return this.findAll().stream().filter(entry -> entry.getLastName().toLowerCase().contains(lastName.toLowerCase())).collect(Collectors.toList());
     }
 
     @Override

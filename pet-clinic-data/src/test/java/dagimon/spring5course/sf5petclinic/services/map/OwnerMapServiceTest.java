@@ -4,6 +4,7 @@ import dagimon.spring5course.sf5petclinic.model.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,5 +78,21 @@ class OwnerMapServiceTest {
     void deleteById() {
         ownerMapService.deleteById(OWNER_ID);
         assertEquals(0, ownerMapService.findAll().size());
+    }
+
+    @Test
+    void findAllByLastNameLike() {
+        String ownerName = "Kowalski";
+        List<Owner> owners = ownerMapService.findAllByLastNameLike(ownerName.substring(5));
+        assertNotNull(owners);
+        assertEquals(1, owners.size());
+        assertEquals(ownerName, owners.get(0).getLastName());
+    }
+
+    @Test
+    void findAllByLastNameLikeNotFound() {
+        String ownerName = "Nothing";
+        List<Owner> owners = ownerMapService.findAllByLastNameLike(ownerName);
+        assertEquals(0, owners.size());
     }
 }
