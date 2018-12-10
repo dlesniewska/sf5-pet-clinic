@@ -9,13 +9,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -101,5 +98,39 @@ class OwnerSDJpaServiceTest {
         ownerService.deleteById(OWNER_ID);
 
         verify(ownerRepository).deleteById(anyLong());
+    }
+
+    @Test
+    void findAllByLastNameLike() {
+        String ownerName = "Kowalski";
+        when(ownerRepository.findAllByLastNameLike(anyString())).thenReturn(
+                Arrays.asList(
+                        Owner.builder().id(1L).lastName(ownerName).build()));
+
+        List<Owner> owners = ownerService.findAllByLastNameLike(ownerName.substring(5));
+        assertNotNull(owners);
+        assertEquals(1, owners.size());
+        assertEquals(ownerName, owners.get(0).getLastName());
+    }
+
+    @Test
+    void findAllByLastNameLikeNotFound() {
+        String ownerName = "Nothing";
+        when(ownerRepository.findAllByLastNameLike(anyString())).thenReturn(
+                new ArrayList<>());
+
+        List<Owner> owners = ownerService.findAllByLastNameLike(ownerName);
+        assertEquals(0, owners.size());
+    }
+
+    @Test
+    void findAllByLastNameLikeNullFindAll() {
+        String ownerName = null;
+        when(ownerRepository.findAllByLastNameLike(isNull())).thenReturn(
+                Arrays.asList(
+                        Owner.builder().id(1L).lastName(ownerName).build()));
+
+        List<Owner> owners = ownerService.findAllByLastNameLike(null);
+        assertEquals(1, owners.size());
     }
 }

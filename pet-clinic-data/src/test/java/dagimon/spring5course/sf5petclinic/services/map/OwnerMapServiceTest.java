@@ -95,4 +95,11 @@ class OwnerMapServiceTest {
         List<Owner> owners = ownerMapService.findAllByLastNameLike(ownerName);
         assertEquals(0, owners.size());
     }
+
+    @Test
+    void findAllByLastNameLikeNullFindAll() {
+        String ownerName = null;
+        List<Owner> owners = ownerMapService.findAllByLastNameLike(ownerName);
+        assertEquals(1, owners.size());
+    }
 }
