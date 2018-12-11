@@ -30,6 +30,31 @@ public class Owner extends Person {
         this.address = address;
         this.city = city;
         this.telephone = telephone;
-        this.pets = pets;
+        if (null != pets) {
+            this.pets = pets;
+        }
+    }
+
+    public void addPet(Pet pet) {
+        this.pets.add(pet);
+        pet.setOwner(this);
+    }
+
+    public Pet getPet(String petName) {
+        return getPet(petName, false);
+    }
+
+    private Pet getPet(String petName, boolean ignoreNew) {
+        petName = petName.toLowerCase();
+        for (Pet pet : pets) {
+            if (!ignoreNew || !pet.isNew()) {
+                String compName = pet.getName();
+                compName = compName.toLowerCase();
+                if (compName.equals(petName)) {
+                    return pet;
+                }
+            }
+        }
+        return null;
     }
 }
