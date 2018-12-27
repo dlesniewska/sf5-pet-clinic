@@ -32,7 +32,7 @@ jobs:
 
       - run: mvn install -DskipTests
 
-      - run: mvn dependency:go-offline
+#      - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
@@ -48,4 +48,3 @@ jobs:
       -run:
           name: Send to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
-
